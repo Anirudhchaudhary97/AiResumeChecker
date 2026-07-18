@@ -8,7 +8,7 @@ const {connectDB} = require('./config/db')
 const {notFound,errorHandler} = require('./middleware/errorHandler')
 
 const healthRouter = require('./routes/health')
-
+const authRouter = require('./routes/auth')
 
 const app = express()
 app.set('trust proxy', 1)
@@ -33,7 +33,14 @@ if(!env.isProduction){
     app.use(morgan('dev'))
 }
 
+
+//@Routes
 app.use('/api/health',healthRouter)
+app.use('/api/auth',authRouter)
+
+
+
+
 app.use(notFound)
 app.use(errorHandler)
 
